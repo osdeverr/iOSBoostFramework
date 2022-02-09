@@ -31,7 +31,7 @@ VERSION = 1_70_0
 #
 TARBALL = $(NAME)_$(VERSION).tar.bz2
 VERSIONDIR = $(subst _,.,$(VERSION))
-DOWNLOAD_URL = http://sourceforge.net/projects/boost/files/boost/$(VERSIONDIR)/$(TARBALL)
+DOWNLOAD_URL = https://sourceforge.net/projects/boost/files/boost/$(VERSIONDIR)/$(TARBALL)
 
 #
 # Files used to trigger builds for each architecture
@@ -175,7 +175,7 @@ $(MAKER_ARCHIVES_DIR) $(MAKER_SOURCES_DIR) $(MAKER_BUILD_DIR) $(MAKER_BUILDROOT_
 tarball : dirs $(MAKER_ARCHIVES_DIR)/$(TARBALL)
 
 $(MAKER_ARCHIVES_DIR)/$(TARBALL) :
-	curl -L --retry 10 -s -o $@ $(DOWNLOAD_URL) || { \
+	curl -L --insecure --retry 10 -s -o $@ $(DOWNLOAD_URL) || { \
 	    $(RM) $@ ; \
 	    exit 1 ; \
 	}
